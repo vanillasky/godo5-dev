@@ -1,0 +1,9 @@
+skin_name : moment_C
+skin_code : moment_C
+skin_copy_date : 2018-09-02
+skin_version : 2.0
+skin_device : front
+skin_country : kr_global
+apply_solution : 고도몰5
+worker : 프랑코스미스 - 김성환
+notice1 : moment 스킨에서 moment_C 스킨으로 복사한 스킨임
