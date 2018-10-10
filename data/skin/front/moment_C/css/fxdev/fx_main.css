@@ -1,0 +1,19 @@
+body {
+    font-family:sans-serif, "Nanum Gothic",'나눔고딕',Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움";
+    font-size:12px;
+}
+
+img, a {
+    outline: none;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom:0;
+}
+
+.item_detail_list dd.member_offer {
+    color: #c9282d;
+    font-weight: bold;
+    font-size: 14px;
+}

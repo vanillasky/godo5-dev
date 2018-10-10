@@ -1,0 +1,134 @@
+/** Override layout.css */
+.top_mypage_cont .top_mypage_tit {
+    display: block;
+    background: url(../../img/etc/select_arrow_down_11x7.png) no-repeat 60px center;
+}
+
+.top_mypage_cont .top_mypage_tit.active {
+	display:block; 
+	margin-top:-3px; 
+	border:1px solid #999999; 
+	background:url("../../img/etc/select_arrow_up_11x7.png") no-repeat 60px center;
+}
+
+#header .top_search {
+    position: absolute;
+    top: 55px;
+    right: auto;
+    left: 60px;
+    float: none;
+    background: #ffffff;
+    border: 1px solid #abadb5;
+    z-index: 110;
+}
+
+/** //Override layout.css */
+a {
+    color: #333;
+    text-decoration: none!important;
+}
+
+a:hover, a:visited {
+    color: #333;
+    text-decoration: none!important;
+}
+
+.top_red {
+	background: #C9242B;
+}
+
+#header .fx_header_hotkeyword {
+	position: absolute;
+    top: 27px;
+    right: auto;
+    left: 60px;
+    float: none;
+}
+
+#header .fx_header_hotkeyword a {
+	font-size: 12px;
+}
+
+
+/** Top Banners */
+.top_banner_clear { 
+	clear: both;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+}
+
+#fxTopBanner {
+	height: 110px; 
+	position: relative;
+}
+
+#fxTopBanner .updown_btn {
+	height: auto;
+	position: relative;
+	z-index: 1;
+}
+
+#fxTopBanner .fx_btn_down {
+	position: absolute; 
+	top: 55px; 
+	right: -5%;
+}
+
+#fxTopBanner .fx_btn_up {
+	position: absolute; 
+	top: 20px; 
+	right: -5%;
+}
+
+.fx_topbanner_togglebtn {
+	width: 20px; 
+	height: 20px; 
+	cursor: pointer;
+	margin-top: 3px;
+}
+
+.fx_topbanner_togglebtn.on {
+	background: url('../../fximg/btn/if_double-arrow-up_383150.png');
+}
+
+.fx_topbanner_togglebtn {
+	background: url('../../fximg/btn/if_double-arrow-down_383153.png');
+}
+
+.fx_top_nav {
+	padding-bottom: 6px;
+	border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.fx_fixed_top {
+    position: fixed;
+    top: 0;
+	width: 100%;
+	left: 0; 
+	z-index: 9999;
+	opacity: 0.95;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+/** End Top Banners */
+
+/** Top Header and Search */
+.fx_top_header {
+	width: 100%;
+	min-height: 58px;
+	padding: 50px 0;
+	text-align: center;
+}
+
+.slider-banner-492757864 .slick-prev {
+	left: 0;
+	right: auto;
+}
+
+.slider-banner-492757864 .slick-next {
+	left: auto;
+	right: 0;
+}
+/** End Top Header and Search */

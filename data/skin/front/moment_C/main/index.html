@@ -7,24 +7,27 @@
 <!-- //main_visual -->
 <div class="main_content">
     <div class="main_slide_ban">
-        <div class="main_slide">
-            <!--{ @dataBanner('378864211') }-->{.tag}<!--{ / }-->
-        </div>
-        <!-- //main_slide -->
-
-        <div class="main_banner">
-            <div class="main_ban_img01">
-                <!--{ @dataBanner('735864301') }-->{.tag}<!--{ / }-->
+        <div class="row">
+            <div class="col-md-3">
+                <!--{ @dataBanner('378864211') }-->{.tag}<!--{ / }-->
             </div>
-            <div class="main_ban_img02">
+            <div class="col-md-3">
                 <!--{ @dataBanner('3959528376') }-->{.tag}<!--{ / }-->
             </div>
-            <div class="main_ban_img03">
+            <div class="col-md-3">
                 <!--{ @dataBanner('701821562') }-->{.tag}<!--{ / }-->
             </div>
+            <!--{ ? canNotice}-->
+            <div class="col-md-3 notice_list" >
+                <h4><a href="../board/list.php?bdId={noticeBdId}" title="{=__('공지 리스트')}">NOTICE</a></h3>
+                {=includeWidget('board/board_article', 'bdId', noticeBdId, 'listCount', 5, 'strCut', 30)}
+            </div>
+            <!--{/}-->
+            <!-- //notice_list -->
         </div>
-        <!-- //main_banner -->
+        
     </div>
+    
     <!-- //main_slide_ban -->
     <div class="main_goods_cont">
     <!-- 설문조사 배너 -->{=pollViewBanner()}<!-- 설문조사 배너 -->

@@ -5,6 +5,7 @@
     var bdGoodsQaId = '{bdGoodsQaId}';
     var bdGoodsReviewId = '{bdGoodsReviewId}';
     var goodsNo = '{goodsView.goodsNo}';
+    var goodsCd = '{goodsView.goodsCd}';
     var goodsViewController = new gd_goods_view();
     var goodsTotalCnt;
     var goodsOptionCnt = [];
@@ -31,7 +32,8 @@
             'setFixedSales' : '{=goodsView["fixedSales"]}',
             'setFixedOrderCnt' : '{=goodsView["fixedOrderCnt"]}'
         };
-
+        console.log('{goodsView.goodsCd}');
+        console.log({=goodsView['goodsNo']});
         goodsViewController.init(parameters);
 
         <!--{ ? goodsView['qrCodeFl'] == 'y' && goodsView['qrStyle'] == 'btn' }-->
@@ -935,15 +937,12 @@
                         <!-- //btn_qa_share_box -->
                     </div>
                     <div class="item_detail_list">
-                        <!--{ @ displayField }-->
-                        <!--{ ? .value_ : 'shortDescription' }-->
-                        <!--{ ? gd_isset(goodsView['shortDescription']) }-->
                         <dl>
-                            <dt>{=__('짧은설명')}</dt>
-                            <dd>{goodsView['shortDescription']}</dd>
+                            <dt>{=__('상품코드')}</dt>
+                            <dd>{goodsView.goodsCd}</dd>
                         </dl>
-                        <!--{ / }-->
-                        <!--{ : 'fixedPrice' }-->
+                        <!--{ @ displayField }-->
+                        <!--{ ? .value_ : 'fixedPrice' }-->
                         <!--{ ? gd_isset(goodsView['fixedPrice']) > 0  && goodsView['goodsPriceDisplayFl'] =='y' }-->
                         <dl>
                             <dt>{=__('정가')}</dt>
@@ -952,6 +951,19 @@
                             </dd>
                         </dl>
                         <!--{ / }-->
+                        <!--{ : 'shortDescription' }-->
+                        <!--{ ? gd_isset(goodsView['shortDescription']) }-->
+                        <dl>
+                            <!--{ ? strpos(goodsView['shortDescription'], "회원할인가") === 0 || strpos(goodsView['shortDescription'], "이메일") === 0 }-->
+                            <dt>{=__('추가혜택')}</dt>
+                            <dd class="member_offer">{goodsView['shortDescription']}</dd>
+                            <!--{ : }-->
+                            <dt>{=__('짧은설명')}</dt>
+                            <dd>{goodsView['shortDescription']}</dd>
+                            <!--{ / }-->
+                        </dl>
+                        <!--{ / }-->
+                        
                         <!--{ : 'couponPrice' }-->
                         <!--{ ? gd_isset(goodsView['couponPrice']) > 0 && couponUse == 'y'  && goodsView['goodsPriceDisplayFl'] =='y' }-->
                         <dl class="item_price">
@@ -1270,6 +1282,12 @@
                             </dd>
                         </dl>
                         <!--{ / }-->
+                        <dl>
+                            <dt>{=__('브랜드')}</dt>
+                            <dd>{=goodsView['brandNm']}
+                                <span class="btn_gray_list"><a href="../goods/goods_list.php?brandCd={=goodsView['brandCd']}" class="btn_gray_small"><span>{=__('브랜드샵')}</span></span>
+                            </dd>
+                        </dl>
                         <!--{ : 'goodsWeight' }-->
                         <!--{ ? gd_isset(goodsView['goodsWeight']) > 0 }-->
                         <dl>

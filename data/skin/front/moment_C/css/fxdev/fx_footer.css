@@ -1,0 +1,84 @@
+.fx_footerbox {
+    background: #EDEDED;
+    border-bottom: 1px solid #fff;
+}
+
+.fx_footerbox h3 {
+    font-size: 1rem;
+}
+
+.fx_footerbox p {
+    font-size: 0.8rem;
+}
+
+.fx_footerbox .notice_list ul li {
+    font-size: 0.8rem;
+}
+
+.fx_footer_line {
+    background: #EDEDED;
+    border-bottom: 1px solid #fff;
+}
+
+.fx_footer_line ul li {
+    font-size: 0.8rem;
+}
+
+.fx_footerbox dt {
+    float: left;
+    margin-right: 5px;
+    padding-top: 0;
+}
+
+.fx_footerbox dd {
+    float: left;
+    display: block;
+    margin-right: 5px;
+    padding-top: 0;
+}
+
+.fx_footerbox dl {
+    font-size: 0.8rem;
+    clear: both;
+    line-height: 12px;
+}
+
+.copyright {
+    font-size: 0.8rem;
+}
+
+.social-footer ul {
+    position: relative;
+    list-style: none;
+    padding: 0 0 0 0;
+    margin: 0;
+}
+
+.social-footer li {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.social-footer li a {
+    display: inline-block;
+    zoom: 1;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+.social-footer li #facebook:hover { background:url(../../fximg/icon/facebook32r.png) no-repeat center center; }
+.social-footer li #twitter:hover { background:url(../../fximg/icon/twitter32r.png) no-repeat center center; }
+.social-footer li #googleplus:hover { background:url(../../fximg/icon/google-plus32r.png) no-repeat center center; }
+.social-footer li #pinterest:hover { background:url(../../fximg/icon/pinterest32r.png) no-repeat center center; }
+.social-footer li #instagram:hover { background:url(../../fximg/icon/instagram32r.png) no-repeat center center; }
+.social-footer li #youtube:hover { background:url(../../fximg/icon/youtube32r.png) no-repeat center center; }
+
+#facebook{ background:url(../../fximg/icon/facebook32.png) no-repeat center center; }
+#twitter{ background:url(../../fximg/icon/twitter32.png) no-repeat center center; }
+#googleplus { background:url(../../fximg/icon/google-plus32.png) no-repeat center center; }
+#pinterest { background:url(../../fximg/icon/pinterest32.png) no-repeat center center; }
+#instagram { background:url(../../fximg/icon/instagram32.png) no-repeat center center; }
+#youtube { background:url(../../fximg/icon/youtube32.png) no-repeat center center; }

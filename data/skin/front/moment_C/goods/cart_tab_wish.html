@@ -3,10 +3,10 @@
     <form id="frmTabWish" name="frmTabWish" method="post" target="ifrmProcess">
         <input type="hidden" name="mode" value="">
         <div class="zzim_table_box">
-            <table border="0" cellpadding="0" cellspacing="0">
+            <table border="1" cellpadding="0" cellspacing="0">
                 <colgroup>
                     <col width="50px" />
-                    <col width="300px" />
+                    <col width="350px" />
                     <col />
                     <col />
                     <col />
@@ -344,8 +344,10 @@
                 totalCouponGoodsDcPirce = totalCouponGoodsDcPirce + parseInt(couponGoodsDcPrice);
                 totalGoodsPrice = totalGoodsPrice + parseInt(goodsPrice) + parseInt(memberDcPrice) + parseInt(goodsDcPrice) + parseInt(couponGoodsDcPrice);
                 totalGoodsMileage = totalGoodsMileage + parseInt(goodsMileage);
+
             }
         });
+
         var totalGoodsCnt = $('input:checkbox[name="sno[]"]:checked').length;
         var totalSettlePrice = totalGoodsPrice - totalGoodsDcPrice - totalSumMemberDcPrice - totalCouponGoodsDcPirce + totalDeliveryCharge;
         $('span.totalGoodsCnt').html(numeral(totalGoodsCnt).format());
@@ -355,6 +357,7 @@
         $('span.totalCouponGoodsDcPrice').html(numeral(totalCouponGoodsDcPirce).format());
         $('span.totalSettlePrice').html(numeral(totalSettlePrice).format());
         $('span.totalGoodsMileage').html(numeral(totalGoodsMileage).format());
+
     }
 
     function gd_carttab_option_view_result(params, sno) {

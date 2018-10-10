@@ -38,8 +38,8 @@
 .top_member_box{float:right; position:relative; margin:16px -15px 0 0px; line-height:1; z-index:150;}
 .top_member_box .txt_bar{display:inline-block; width:1px; height:10px; margin:0 0 0 10px; background:#dedede; vertical-align:-1px}
 .top_member_box > li{float:left; position:relative;}
-.top_member_box > li a{display:inline-block; padding:4px 0 4px 10px; color:#888888; font-size:11px;}
-.top_member_box > li a:hover{text-decoration:underline;}
+.top_member_box > li a{display:inline-block; padding:4px 0 4px 10px; color:#888888; font-size:12px;}
+.top_member_box > li a:hover{text-decoration:none;}
 /*.top_member_box > li:first-child{border-left:0 none;}*/
 .top_member_box > li strong{color:#ab3e55;}
 /* join 캡션 */
@@ -51,12 +51,12 @@
 .top_member_box > li .accent span{padding-right:4px; background-position:right 0;}
 .top_member_box > li .accent strong{padding-left:3px; background-position:0 0;}
 /* 마이페이지 레이어 */
-.top_mypage_cont{display:inline-block; width:78px; padding:0 0 0 5px;}
+.top_mypage_cont{display:inline-block; width:90px; padding:0 0 0 5px;}
 .top_mypage_cont .top_mypage_tit{display:block; background:url("../../img/etc/select_arrow_down_11x7.png") no-repeat 50px center;}
 .top_mypage_cont .top_mypage_tit a{display:inline-block; /*padding:4px 21px 4px 14px;*/}
 .top_mypage_cont .top_mypage_tit.active{display:block; margin-top:-3px; border:1px solid #999999; background:url("../../img/etc/select_arrow_up_11x7.png") no-repeat 50px center;}
 .top_mypage_cont .top_mypage_tit.active a{padding:6px 0 6px 9px;}
-.top_mypage_cont ul{display:block; position:absolute; top:19px; left:5; width:76px; padding:3px 0 3px 0; border:1px solid #999999; background:#ffffff; z-index:40;}
+.top_mypage_cont ul{display:block; position:absolute; top:19px; left:5; width:85px; padding:3px 0 3px 0; border:1px solid #999999; background:#ffffff; z-index:40;}
 .top_mypage_cont li{}
 .top_mypage_cont li a{display:block; padding:6px 5px 7px 10px;}
 .top_mypage_cont li a:hover{color:#ffffff; text-decoration:none; background:#ab3e55;}

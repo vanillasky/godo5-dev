@@ -1,56 +1,39 @@
 {*** [위젯] 레이어형 상단 카테고리 | proc/category_top.htm ***}
 
-<div class="gnb_left"><a href="#PREV" class="active">PREV</a></div>
-<div class="gnb_menu_box">
-    <ul class="depth0 gnb_menu0">
+<!-- <div class="gnb_menu_box"> -->
+    <ul class="dropdown"> 
         <!--{ @ data }-->
-        <li <!--{ ? .divisionFl =='y' }--> class='group_tit'<!--{ / }-->>
-            <!--{ ? .divisionFl =='n' }-->
+        <li class="nav-item fx_cate_1">
             <a href="../goods/goods_list.php?{cateType}Cd={.cateCd}" >{.cateNm}</a>
-            <!--{ : }-->
-            {.cateNm}
-            <!--{ / }-->
             <!--{ ? .children }-->
-            <ul class="depth1">
-                <!--{ @ .children }-->
-                <li <!--{ ? ..divisionFl =='y' }--> class='group_tit'<!--{ / }-->>
-                    <!--{ ? ..divisionFl =='n' }-->
-                    <a href="../goods/goods_list.php?{cateType}Cd={..cateCd}" >{..cateNm}</a>
-                    <!--{ : }-->
-                    {..cateNm}
+            <div class="dropdown-content">
+                <div class="row">
+                    <!--{ @ .children }-->
+                    <div class="col-md-2">        
+                        <ul class="nav flex-column">
+                            <li class="nav-item fx_cate_2">
+                                <a href="../goods/goods_list.php?{cateType}Cd={..cateCd}">{..cateNm}
+                                <!--{ ? ..children }-->
+                                <span class="fx_top_menu_more"><i class="fa fa-angle-right" style="font-size:18px"></i></span></a>
+                                <ul>
+                                    <!--{ @ ..children }-->
+                                    <li class="nav-item fx_cate_3">
+                                        <a href="../goods/goods_list.php?{cateType}Cd={...cateCd}" >{...cateNm}</a>
+                                    </li>
+                                    <!--{ / }-->    
+                                </ul>
+                                <!--{ / }-->            
+                            </li>
+                        </ul>
+                    </div>
                     <!--{ / }-->
-                    <!--{ ? ..children }-->
-                    <ul class="depth2">
-                        <!--{ @ ..children }-->
-                        <li <!--{ ? ...divisionFl =='y' }--> class='group_tit'<!--{ / }-->>
-                            <!--{ ? ...divisionFl =='n' }-->
-                            <a href="../goods/goods_list.php?{cateType}Cd={...cateCd}" >{...cateNm}</a>
-                            <!--{ : }-->
-                            {...cateNm}
-                            <!--{ / }-->
-                            <!--{ ? ...children }-->
-                            <ul class="depth3">
-                                <!--{ @ ...children }-->
-                                <li <!--{ ? ....divisionFl =='y' }--> class='group_tit'<!--{ / }-->>
-                                <!--{ ? ....divisionFl =='n' }-->
-                                <a href="../goods/goods_list.php?{cateType}Cd={....cateCd}" >{....cateNm}</a>
-                                <!--{ : }-->
-                                {....cateNm}
-                                <!--{ / }-->
-                                </li>
-                                <!--{ / }-->
-                            </ul>
-                            <!--{ / }-->
-                        </li>
-                        <!--{ / }-->
-                    </ul>
-                    <!--{ / }-->
-                </li>
-                <!--{ / }-->
-            </ul>
-            <!--{ / }-->
+                    <div class="fx_category_bottom"><span><a href="#">기획전/공지사항등 필요한 내용 있을때만 사용?</a></span></div> 
+                </div>    
+            </div>
+            <!--{ / }-->   
         </li>
-        <!--{ / }-->
-    </ul>
-</div>
-<div class="gnb_right"><a href="#NEXT">NEXT</a></div>
+         <!--{ / }-->
+    </ul>    
+    
+    
+<!-- </div> -->

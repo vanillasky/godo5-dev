@@ -15,7 +15,7 @@
 .item_photo_slide{position:relative; margin:20px 0 0 0;}
 .item_photo_slide .slider_goods_nav{font-size:0; width:520px;}
 .item_photo_slide .slider_goods_nav li{display:inline-block; width:80px; height:84px; padding:0 10px 0 10px;/* background:#666;*/}
-.item_photo_slide .slider_goods_nav li img{width:80px; height:80px; margin:2px 2px 2px 2px;}
+.item_photo_slide .slider_goods_nav li img{width:68px; height:68px; margin:2px 2px 2px 2px;}
 .item_photo_slide .slider_goods_nav li a{display:block; width:80px;}
 /* 작은 슬라이드 이미지 오버시, 선택시 */
 .item_photo_slide .slider_goods_nav li a:hover{width:80px; height:80px; border:2px solid #333;}
@@ -502,3 +502,4 @@
 #goodsRestock .btn_center_box{}
 
 #goodsRestock .ly_close{display:block; position:absolute; top:0px; right:0px; padding:20px;}
+

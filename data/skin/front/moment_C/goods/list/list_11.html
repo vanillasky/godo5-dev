@@ -7,6 +7,17 @@
         <li <!--{ ? themeInfo.soldOutIconFl == 'y' && ..soldOut =='y' && soldoutDisplay.soldout_overlay != '0' }-->class="item_soldout"<!--{ / }--> style="width:{=(100/themeInfo.lineCnt)}%;">
             <div class="item_cont">
                 <div class="item_photo_box" <!--{ ? ..goodsData }-->{=..goodsData}<!--{ / }-->>
+                    
+                    <!--{ ? gd_isset(..shortDescription) && strpos(..shortDescription, "회원할인가") === 0 }-->
+                    <span style="position: absolute; right: 5px; top: 1px;"><img src="../../fximg/icon/circle-icon-memberdc.png"></span>
+                    <!--{: gd_isset(..shortDescription) && strpos(..shortDescription, "이메일쿠폰") === 0 }-->
+                    <span style="position: absolute; right: 5px; top: 1px;"><img src="../../fximg/icon/circle-icon-emailclub.png"></span>
+                    <!--{/}-->
+
+                    <!--{ ? gd_isset(..fixedPrice) && ..fixedPrice > ..goodsPrice && ..goodsPriceDisplayFl =='y'}-->
+                    <span style="position: absolute; right: 5px; top: 1px;"><img src="../../fximg/icon/sale-circle-icon.png"></span>
+                    <!--{/}-->
+
                     <a href="{=gd_goods_url(..goodsUrl, ..goodsNo)}" <!--{ ? themeInfo.relationLinkFl == 'blank' }--> target="_blank"<!--{ / }-->>
                         <!--{ ? in_array('img', themeInfo.displayField) && gd_isset(..goodsImage) }-->
                         {..goodsImage}
@@ -255,7 +266,6 @@
         $('.btn_move_wish').click(function() {
             location.href = '../mypage/wish_list.php';
         });
-
     });
 
     function gd_goods_option_view_result(params) {
