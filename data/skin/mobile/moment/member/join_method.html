@@ -1,0 +1,25 @@
+{*** 회원가입 | member/join_method.php ***}
+{ # header }
+<div class="join_method">
+	<ul class="sns_login">
+		<li id="btnJoin"><a href="javascript://">{=__('쇼핑몰 아이디 회원가입')}</a></li>
+		<!--{ ? usePaycoLogin }-->
+		<li class="payco js_btn_payco_login"><img src="../img/etc/logo_payco.png" alt="{=__('PAYCO')}"> {=__('아이디 회원가입')}</li>
+		<!--{ / }-->
+		<!--{ ? useFacebookLogin }-->
+		<li class="facebook js_btn_facebook_login" data-facebook-url="{=facebookUrl}"><img src="../img/etc/logo_facebook.png" alt="{=__('FACEBOOK')}"> {=__('아이디 회원가입')}</li>
+		<!--{ / }-->
+		<!--{? useNaverLogin}-->
+		<li class="naver js_btn_naver_login" data-naver-type="join_method"><img src="../img/etc/logo_naver.png" alt="{=__('네이버')}" /> {=__('아이디 회원가입')}</li>
+		<!--{/}-->
+	</ul>
+	<!-- //sns_login -->
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnJoin').click(function () {
+            location.href = '../member/join_agreement.php?memberFl=personal';
+        });
+    });
+</script>
+{ # footer }

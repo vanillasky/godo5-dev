@@ -1,0 +1,69 @@
+{*** 쿠폰 | mypage/coupon.php ***}
+{ # header }
+<div class="coupon">
+	<!-- 쿠폰 등록 -->
+	<h3>{=__('쿠폰 등록')}</h3>
+	<div class="my_coupon">
+		<form name="frmCouponOffline" id="frmCouponOffline" method="post" action="coupon_ps.php">
+			<fieldset>
+				<legend>{=__('쿠폰 등록 영역')}</legend>
+					<div class="inp_tx">
+						<input type="hidden" name="mode" value="couponOfflineRegist">
+						<input type="text" name="couponOfflineNumber" size="5" maxlength="12" class="inputnum" placeholder="{=__('쿠폰 번호 입력')}" required >
+					</div>
+					<div class="btn"><button type="submit" class="coupon_ok_btn">{=__('쿠폰 등록')}</button></div>
+			</fieldset>
+		</form>
+		<p class="tx">{=__('모바일, 이메일 또는 인쇄물 등을 통해 발급받은%s 쿠폰 인증번호를 등록해주세요.', '<br>')}</p>
+	</div>
+	<!--쿠폰 내역-->
+	<!--{ ? data }-->
+	<h3>{=__('쿠폰 내역')} <span>({=__('사용 가능한 쿠폰 %s장', '<strong>' + count(data) + '</strong>')})</span></h3>
+	<ul class="coupon_bx">
+		<!--{ @ data }-->
+		<li>
+			<dl>
+				<dt><span class="elp">{.couponNm}</span></dt>
+				<dd><strong>{=__('할인금액')}</strong>{=gd_money_format(.couponBenefit)}<!--{ ? .couponBenefitType === 'percent'}-->% {=__('할인')} <!--{ : }-->{=__('원 할인')} <!--{ / }--></dd>
+				<dd class="limit"><strong>{=__('유효기간')}</strong>{=gd_date_format('Y-m-d H:i',.memberCouponEndDate)} {=__('까지')}</dd>
+				<dd><strong>{=__('취득일자')}</strong>{=gd_date_format('Y-m-d H:i',.memberCouponStartDate)}</dd>
+				<dd><strong>{=__('혜택구분')}</strong><!--{ ? .couponKindType === 'sale' }-->{=__('상품 할인')}<!--{ : .couponKindType === 'add' }-->{=__('마일리지 적립')}<!--{ : }-->{=__('배송비 할인')}<!--{ / }--></dd>
+				<dd><strong>{=__('비고')}</strong><!--{ ? .couponDeviceType === 'all' }-->{=__('PC + 모바일')}<!--{ : .couponKindType === 'pc' }-->{=__('PC 전용')}<!--{ : }-->{=__('모바일 전용')}<!--{ / }--></dd>
+			</dl>
+		</li>
+		<!--{ / }-->
+	</ul>
+	<!--{ : }-->
+	<h3>{=__('쿠폰 내역')} <span>({=__('사용 가능한 쿠폰 %s장', '<strong>0</strong>')})</span></h3>
+	<div class="coupon_bx no">
+		<p>{=__('발행된 쿠폰 내역이 없습니다.')}</p>
+	</div>
+	<!--{ / }-->
+</div>
+<script type="text/javascript">
+	<!--
+	$(document).ready(function () {
+		$("#frmCouponOffline").validate({
+			submitHandler: function (form) {
+				form.target = 'ifrmProcess';
+				form.submit();
+			},
+			rules: {
+				couponOfflineNumber: {
+					required: true,
+					minlength: 8,
+					maxlength: 12,
+				},
+			},
+			messages: {
+				couponOfflineNumber: {
+					required: "{=__('쿠폰 인증 번호를 입력하세요.')}",
+					minlength: "{=__('쿠폰 인증 번호의 길이는 최소 8자 입니다.')}",
+					maxlength: "{=__('쿠폰 인증 번호의 길이는 최대 12자 입니다.')}",
+				},
+			}
+		});
+	});
+	//-->
+</script>
+{ # footer }

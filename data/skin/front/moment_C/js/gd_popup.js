@@ -2,6 +2,9 @@
  * 팝업 처리 스크립트
  * @author Shin Donggyu <artherot@godo.co.kr>
  */
+
+var popupCode = new Array();
+
 $(function() {
     $.ajax({
         type: 'GET',
@@ -67,13 +70,14 @@ function gd_main_popup_layer(v, type) {
     if (v.sizeTypeH == '%') {
         v.popupSizeH = ($(window).height() * (Number(v.popupSizeH) / 100)) - 102;
     }
-    var cssAttr = {'position':'absolute','overflow':'hidden','z-index':'2000'};
+    var cssAttr = {'position':'absolute','overflow':'hidden', 'z-index':'300'};
     if (v.popupSizeW != null && v.popupSizeW != '') {
-        cssAttr.width = (v.popupSizeW+100)+'px';
+        cssAttr.width = (v.popupSizeW+36)+'px';
     }
 
-    v.popupSizeH = v.popupSizeH+102;
+    popupCode.push(v.popupCode);
 
+    v.popupSizeH = (v.todayUnSee == 'y') ? v.popupSizeH+117 : v.popupSizeH+67;
 
     if (v.popupSizeH != null && v.popupSizeH != '') {
         cssAttr.height = v.popupSizeH+'px';
@@ -91,7 +95,7 @@ function gd_main_popup_layer(v, type) {
 
     cssAttr.paddingBottom = '10px';
 
-    var ele = $('<div />').attr('id', v.popupCode).css(cssAttr);
+    var ele = $('<div />').attr('id', v.popupCode).attr('class', 'main_popup_layer').css(cssAttr);
     $.ajax({
         type: 'GET'
         , url: '../popup/popup.php?sno='+v.sno
@@ -101,9 +105,28 @@ function gd_main_popup_layer(v, type) {
         }
     });
     ele.appendTo('body');
+
+    gd_main_popup_layer_mousedown(v);
+
     if (type == 'move') {
         ele.drags();
     }
+}
+
+/**
+ * 클릭된 팝업 맨 위로 노출 처리
+ */
+function gd_main_popup_layer_mousedown(v) {
+    $('.main_popup_layer').on('mousedown', function(){
+        for(var k in popupCode) {
+            if (popupCode[k] != $(this).attr('id')) {
+                $('#' + popupCode[k]).css('z-index', 200);
+            }
+        }
+        if (v.popupCode == $(this).attr('id')) {
+            $(this).css('z-index', 2000);
+        }
+    })
 }
 
 /**

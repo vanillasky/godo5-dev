@@ -115,13 +115,19 @@
 <script type="text/javascript">
     <!--
     $(document).ready(function(){
-        $('.slide_vertical_{mainData.sno}').slick({
-            draggable : false,
-            vertical : true,
-            autoplay: true,
-            infinite: true,
-            adaptiveHeight: true
-        });
+
+        <!--{ ? imageLazyFl == 'y' }-->
+        $("img.gd_image_lazy").lazyload({event:'load'});
+        <!--{ / }-->
+        $('.slide_vertical_{mainData.sno}')
+            .slick({
+                draggable : false,
+                vertical : true,
+                autoplay: true,
+                infinite: true,
+                adaptiveHeight: true
+            });
+
     });
     //-->
 </script>

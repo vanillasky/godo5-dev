@@ -113,18 +113,33 @@
     <div class="goods_no_data"><strong>{=__('상품이 존재하지 않습니다.')}</strong></div>
     <!--{ / }-->
 </div>
+
 <!-- //item_slide_horizontal -->
 <script type="text/javascript">
     <!--
     $(document).ready(function(){
-        $('.item_slide_horizontal .slide_horizontal_{mainData.sno}').slick({
-            draggable : false,
-            autoplay: true,
-            infinite: true,
-            slidesToShow: {themeInfo.lineCnt},
-            <!--{ ? themeInfo.detailSet =='L' }-->rtl : true,<!--{ / }-->
-            slidesToScroll: 1
-        });
+        <!--{ ? imageLazyFl == 'y' }-->
+        $("img.gd_image_lazy").lazyload({event:'load'});
+        <!--{ / }-->
+
+        $('.item_slide_horizontal .slide_horizontal_{mainData.sno}')
+            .on('init', function(){
+                <!--{ ? themeInfo.detailSet =='L' }-->
+                $('[dir="rtl"] .slick-slide').css({'float':'left'});
+                <!--{ / }-->
+            }).slick({
+                draggable : false,
+                autoplay: true,
+                infinite: true,
+                slidesToShow: {themeInfo.lineCnt},
+                <!--{ ? themeInfo.detailSet =='L' }-->rtl : true,
+                <!--{ / }-->
+                slidesToScroll: 1
+            }).on('beforeChange', function(){
+                <!--{ ? imageLazyFl == 'y' }-->
+                $(window).trigger('scroll');
+                <!--{ / }-->
+            });
     });
     //-->
 </script>

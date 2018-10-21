@@ -1,0 +1,43 @@
+{*** 플러스리뷰 전체 게시판 | board/plus_review_article.php ***}
+{ # header}
+<link type="text/css" rel="stylesheet" href="\{=c.PATH_MOBILE_SKIN}css/gd_plus_review.css?ts={=time()}">
+<div class="plus_review_article">
+    <div class="plus_review_list">
+        <ul class="js_pr_list"></ul>
+        <div class="plus_review_more">
+            <button type="button" class="plus_review_more_btn1 js_pr_btn_page_more">{=__('상품후기 더보기')}</button>
+        </div>
+    </div>
+</div>
+{ # footer}
+<script>
+    var page = 1;
+    var isMypage = '{=isMypage}';
+    var totalPage = {=data.cnt.totalPage};
+
+    $(document).ready(function () {
+        gd_load_plus_review_list(1);
+
+        $('.js_pr_btn_page_more').bind('click',function () {
+            page=Number(page)+1;
+            gd_load_plus_review_list(page);
+        })
+    })
+
+    var gd_load_plus_review_list = function (page) {
+        $.ajax({
+            url: '../board/plus_review_article_list.php',
+            data: {page: page,isMypage : isMypage},
+            method: 'get',
+            type: 'text',
+            cache: false,
+        }).success(function (result) {
+            $('.js_pr_list').append(result);
+            if(page >= totalPage){
+                $('.js_pr_btn_page_more').hide();
+            }
+        }).error(function (e) {
+            console.log(e);
+        });
+    }
+</script>

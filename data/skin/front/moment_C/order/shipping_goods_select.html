@@ -211,6 +211,7 @@
         var totalGoodsCnt = 0;
         var setData = [];
         var goodsCntData = [];
+        var postSetData = [];
 
         $('#cartSelectGoods input[name="cartSno[]"]').each(function(index){
             var cartData = {
@@ -261,6 +262,12 @@
                 }
             });
             setData.push(cartData);
+
+            // goodsInfo, addGoodsInfo 데이터는 특수문자로 인해 json 디코딩을 방해하므로 값 삭제 (처리페이지에서 사용하지 않음)
+            var postCartData = $.extend(true, {}, cartData);
+            delete postCartData.goodsInfo;
+            delete postCartData.addGoodsInfo;
+            postSetData.push(postCartData);
         });
 
         if (mode == 'close') {
@@ -310,6 +317,9 @@
         $('input[name="cartSno[]"]').each(function(idx){
             cartAllSno.push($(this).val());
         });
+        // 실제 처리페이지에 보낼 값
+        var postData = JSON.stringify(postSetData);
+
         $.ajax({
             method: "POST",
             url: "../order/cart_ps.php",
@@ -359,7 +369,7 @@
                     deliveryCharge = getData.deliveryCharge;
                     deliveryAreaPrice = getData.deliveryAreaPrice;
                     $('input[name="multiDelivery[' + shippingNo + ']"]').val(getData.deliveryCharge);
-                    $('input[name="selectGoods[' + shippingNo + ']"]').val(data);
+                    $('input[name="selectGoods[' + shippingNo + ']"]').val(postData);
                 } else {
                     $('.select_goods:eq(' + shippingNo + ')').addClass('dn');
                     $('input[name="multiDelivery[' + shippingNo + ']"]').val('');

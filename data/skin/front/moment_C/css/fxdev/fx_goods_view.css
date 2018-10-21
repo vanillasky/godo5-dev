@@ -1,0 +1,369 @@
+/** 제품 상세설명 */
+.description-container {
+    background: #ededed;
+	padding-top: 1.875rem;
+	margin-top: 1rem;
+    margin-bottom: 1.875rem;
+    padding-bottom: .5rem;
+    position: relative;
+}
+
+.specification-container {
+	margin-top:0;
+	padding-top:0;
+  	margin-bottom: 1.875rem;
+  	padding-bottom: .5rem;
+  	position: relative;
+  	
+}
+
+
+.description-container:after,.description-container:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  display: block;
+  border-right: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: none;
+  left: 50%;
+  margin-left: -14px;
+}
+
+.description-container:before {
+  top: 0;
+  border-top: 14px solid #fff;
+}
+
+.description-container:after {
+  border-top: 14px solid #ededed;
+  bottom: -14px;
+}
+
+.box-wrapper {
+	padding-left: .9375rem;
+	padding-right: .9375rem;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: content-box;
+	margin-bottom: .5rem;
+	display:inline-block;
+	text-align:left;
+	width: 96%;
+}
+
+@media only all and (min-width:769px) {
+  
+  .description-container .description {
+    float: left;
+    padding-right: .625rem;
+    width: 48%;
+    min-width:440px;
+  }
+
+  .description-container .features {
+  	float: right;
+    padding-left: .625rem;
+	width: 48%;
+	min-width:440px;
+  }
+}
+
+@media only all and (max-width:768px) {
+  .description-container .features {
+    margin-bottom: 1.875rem;
+  }
+}
+
+
+.specification-container h2,.description-container h2 {
+	margin-top:0;
+	font-size:24px;
+	font-weight:normal;
+}
+
+.description-container .description ul {
+	font-size:12px;
+}
+
+.description-container li {
+	padding-top: 5px;
+}
+
+.description-container p {
+	font-size:12px;
+	line-height:180%;
+}
+
+.description-container span.note {
+	font-weight:600;
+	color:#C9242B;
+}
+
+.key-features {
+    list-style-position: inside;
+    margin-left: 1rem;
+}
+
+.description-container .key-features li {
+    list-style:disc;
+}
+
+.view-more-from {
+	margin-top:10px;
+	display:inline-block;
+	clear:both;
+	width:100%;
+}
+
+.view-more-from h3 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.view-more-from ul {
+	margin-top: 5px;	
+	padding-left:1rem;
+	margin-left:0;
+}
+
+.description-container .description .goods-caution {
+	clear:both;
+}
+
+.description-container .description .goods-caution h4 {
+	margin-top:0;
+	margin-bottom:0;
+	color:#C9242B;
+}
+
+.description-container .description .goods-caution ul {
+	margin-top: 0;
+	margin-left:0;
+	padding-left:1rem;
+}
+
+.prod_detail_img_div {
+    
+    width: 95%;
+    margin: 12px auto;
+    text-align: center;
+}
+
+.video-container {
+	clear:both;
+	margin: 0 auto;
+	width:90%;
+}
+
+
+.video-container h4{
+	margin-top:0;
+	font-size:14px;
+}
+
+.video-container .video-title {
+	text-align:center;
+	margin:0 auto;
+}
+
+.video-container .video-content {
+	text-align:center;
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+	clear:both;
+	
+}
+
+.video-content iframe, .video-content object, .video-content embed {
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+
+table.fullwidth {
+	width:100%;
+	table-layout:fixed;
+}
+
+.outline { border-collapse: collapse; border:1px solid #cccccc;}
+.specification-table { border-collapse: collapse; font-family:Verdana, Geneva, sans-serif; margin-bottom:10px; }
+.specification-table tr.table-row { border-bottom:1px solid #ededed }
+.specification-table .label { width:15%; min-width:120px; text-align:left; font-weight:bold; vertical-align:middle; padding:7px 30px 7px 5px; white-space: nowrap;}
+.specification-table .label-narrow { width:11%; min-width:100px; text-align:left; font-weight:bold; vertical-align:middle; padding:7px 30px 7px 5px; white-space: nowrap;}
+.specification-table .data { text-align:left; font-weight:normal; vertical-align:middle; padding:7px 30px 7px 5px; }
+.specification-table .data_current { 
+	background:url(./img/icon/check16.png) no-repeat center left;
+	padding-left:20px;
+}
+
+.specification-table .unavailable { text-decoration: line-through; }
+.specification-table .data-indent { text-align:left; font-weight:normal; vertical-align:middle; padding:7px 30px 7px 20px; }
+
+.specification-table tr.image { height:125px; }
+.specification-table .label-img { width:20%; min-width:150px; text-align:left;}
+.specification-table .label-img-data { text-align:left; font-weight:normal; vertical-align:top; padding:7px 30px 7px 5px; }
+.specification-table .label-img-data span { padding-top:10px; line-height:18px;}
+
+.specification-table .bline { border-right:1px solid #ccc; }
+
+.specification-table tr:hover td
+{
+	background: #ededed;
+}
+
+/** 상세페이지 리뷰 요약 */
+.plus_review_brief_wrapper {
+	border: 1px solid #ebebeb;
+}
+
+.plus_review_brief ul {
+	padding: 20px 0 15px 0;
+	display: inline-block;
+	text-align: left;
+}
+
+.plus_review_brief em.reviewed {
+	color: #ffcc00;
+	font-size: 20px;
+}
+
+.plus_review_brief em.no_review {
+	color: #ccc;
+	font-size: 20px;
+}
+
+.mline {
+	width: 1px;
+	height: 10px;
+	display: inline-block;
+	background: #d4d4d4;
+	position: relative;
+}
+
+/** Order notice table */
+#order-notice-table 
+{ 
+	width:95%;
+	font-family: "dotum", "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 10px 0 10px 30px;
+	border-collapse: collapse; 
+
+}
+
+#order-notice-table td
+{
+	padding: 8px;
+	background: #e8edff;
+
+}
+
+#order-notice-table td.order-notice-left
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/tb-left.png') left -1px no-repeat;
+}
+
+#order-notice-table td.order-notice-right
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/tb-right.png') right -1px no-repeat;
+}
+
+
+#order-notice-table tfoot td.order-notice-foot-left
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/tb-boleft.png') left bottom no-repeat;
+}
+
+#order-notice-table tfoot td.order-notice-foot-right
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/tb-boright.png') right bottom no-repeat; 
+	
+}
+
+#order-notice-table td.delivery
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/delivery-box.png') 50% 35% no-repeat;
+
+    width: 170px;
+	text-align:center;
+	padding-top:80px;
+
+	font-weight:bold;
+	font-size:1.5em;
+	color:#87191a;
+	border-right:1px solid #87191a;	
+}
+
+#order-notice-table td.return
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/delivery-return.png') 50% 35% no-repeat;
+	
+    width: 170px;
+	text-align:center;
+	padding-top:90px;
+
+	font-weight:bold;
+	font-size:1.5em;
+	color:#87191a;
+	border-right:1px solid #87191a;	
+}
+
+
+#order-notice-table td.contact
+{
+	background: #f4f2e6 url('http://francosmith.godohosting.com/table/delivery-bell.png') 50% 35% no-repeat;
+	
+    width: 170px;
+	text-align:center;
+	padding-top:130px;
+
+	font-weight:bold;
+	font-size:1.5em;
+	color:#87191a;
+	border-right:1px solid #87191a;	
+}
+
+
+#order-notice-table td.delivery-desc {
+	background-color: #f4f2e6;
+	vertical-align:top;
+	padding-left:1em;
+	text-align:left;
+
+}
+
+
+#order-notice-table p.normal {
+	font-size:1em;
+	padding: 0;
+	vertical-align:top;
+    font-weight:normal;
+	margin:0 0 5px 0;
+}
+
+#order-notice-table p span.normal {
+	font-size:1em;
+	padding:0;
+	vertical-align:bottom;
+	font-weight:normal;
+}
+
+
+
+#order-notice-table p.heading { 
+	vertical-align:top;
+	font-family:Verdana, Geneva, sans-serif, dotum;
+	font-weight:bold; 
+	color:#195005 ; 
+	font-size:1.1em;
+	padding:0;
+	margin:0 0 5px 0;
+}

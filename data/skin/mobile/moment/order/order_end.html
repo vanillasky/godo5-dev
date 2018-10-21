@@ -1,0 +1,94 @@
+{*** 주문완료 | order/order_end.php ***}
+{ # header }
+<div class="order_end">
+	<!--{ ? gd_isset(orderInfo.orderStatus) == 'o' }-->
+	<!-- 주문 접수 완료 -->
+	<div class="order_end_box">
+		<h2>{=__('주문번호')} <strong>{orderInfo.orderNo}</strong></h2>
+		<div class="tx">
+			<ul>
+				<!--li>{=gd_isset(orderInfo.bankAccount[0])} : {=gd_isset(orderInfo.bankAccount[1])}
+				</li-->
+				<!--li>예금주 : {=gd_isset(orderInfo.bankAccount[2])}</li-->
+				<li>{=__('금액')} :
+					<span class="prc">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</span>
+				</li>
+				<li>
+					<!--{ ? gd_isset(orderInfo.settleGateway) == 'e' }-->{=__('에스크로')} <!--{ / }-->
+					{=__('결제수단')} : {=gd_isset(orderInfo.settleName)}</strong><br />
+					<!--{ ? gd_isset(orderInfo.settleGateway) == 'f' }-->
+					<!--작업자는 간편결제 내용을 작성해주세요.-->
+					<!--{ : }-->
+					<!--{ ? gd_isset(orderInfo.settleKind) == 'gb' }-->
+					{=__('입금은행')} : {=gd_isset(orderInfo.bankAccount[0])} <br/>
+					{=__('입금계좌')} : {=gd_isset(orderInfo.bankAccount[1])} <br/>
+					{=__('예금주명')} : {=gd_isset(orderInfo.bankAccount[2])} <br/>
+					{=__('입금금액')} : <strong class="c_red">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</strong> <br/>
+					{=__('입금자명')} : {=gd_isset(orderInfo.bankSender)}<br/>
+					<!--{ : }-->
+					<!--{ ? gd_isset(orderInfo.settleMethod) == 'c' }-->
+					{=gd_isset(orderInfo.pgSettleNm[0])}
+					{=__('결제금액')} : <strong class="c_red">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</strong>
+					<!--{ : gd_isset(orderInfo.settleMethod) == 'b' }-->
+					{=__('이체은행')} : {=gd_isset(orderInfo.pgSettleNm[0])} <br/>
+					{=__('결제금액')} : <strong class="c_red">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</strong>
+					<!--{ : gd_isset(orderInfo.settleMethod) == 'v' }-->
+					{=__('입금은행')} : {=gd_isset(orderInfo.pgSettleNm[0])} <br/>
+					{=__('가상계좌')} : {=gd_isset(orderInfo.pgSettleNm[1])} <br/>
+					<!--{ ? gd_isset(orderInfo.pgSettleNm[2]) != '' }--> {=__('예금자명')} : {=gd_isset(orderInfo.pgSettleNm[2])} <br/><!--{ / }-->
+					<!--{ ? gd_isset(orderInfo.pgSettleCd[0]) != '' }--> {=__('송금일자')} : {=gd_date_format('Y-m-d', gd_isset(orderInfo.pgSettleCd[0]))} {=__('까지')} <br/><!--{ / }-->
+					{=__('입금금액')} : <strong class="c_red">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</strong>
+					<!--{ : gd_isset(orderInfo.settleMethod) == 'h' }-->
+					{=__('통신사')} : {=gd_isset(orderInfo.pgSettleNm[0])} <br/>
+					<!--{ ? gd_isset(orderInfo.pgSettleCd[0]) != '' }--> {=__('결제 휴대폰 번호')} : {=gd_isset(orderInfo.pgSettleCd[0])} <br/><!--{ / }-->
+					{=__('결제금액')} : <strong class="c_red">{=gd_currency_display(gd_isset(orderInfo.settlePrice))}</strong>
+					<!--{ / }-->
+					<!--{ / }-->
+					<!--{ / }-->
+				</li>
+			</ul>
+		</div>
+	</div>
+	<p class="tx2">
+		<span>
+			<strong>{=__('입금 후 구매가 확정됩니다.')}</strong>
+			<br>{=__('입금이 늦어질 경우%s해당 상품이 품절될 수 있습니다.', '<br>')}
+		</span>
+	</p>
+	<!--{ : }-->
+	<div class="order_end_box">
+		<h2>{=__('주문번호')} <strong>{orderInfo.orderNo}</strong></h2>
+		<!--{ ? orderInfo.orderStatus == 'p' }-->
+		<!-- 결제 완료 -->
+		<p class="tx">{=__('결제가 완료 되었습니다.')}<br>{=__('감사합니다.')}</p>
+		<!--{ : orderInfo.orderStatus == 'f' }-->
+		<!-- 결제 실패 -->
+		<p class="tx">
+			<!--{ ? gd_pg_result_recheck(orderInfo.pgName) === true }-->
+			{=__('결제가 정상적으로 이루어지지 않았습니다. [결제확인] 버튼을 클릭하여 정상여부를 다시 확인해주시기 바랍니다.')}<br>
+			{=__('지속적으로 문제가 발생될 경우 관리자에게 문의 하시기 바랍니다.')}<br>
+			<a href="../payment/{=orderInfo.pgName}/pg_result_recheck.php?orderNo={orderInfo.orderNo}"><em>{=__('결제확인')}</em></a><br>\
+			<!--{ : }-->
+			{=__('결제가 정상적으로 이루어지지 않았습니다. 다시 결제 진행을 해주시기 바랍니다.')}<br>
+			{=__('지속적으로 문제가 발생될 경우 관리자에게 문의 하시기 바랍니다.')}<br>
+			<!--{ / }-->
+		</p>
+		<!--{ : empty(orderInfo.orderStatus) === false }-->
+		<!-- 재접속 등에 의한 기주문 완료 건으로 접속시 -->
+		<p class="tx">{=__('이미 결제가 완료된 주문입니다.')}<br>{=__('감사합니다.')}</p>
+		<!--{ : }-->
+		<!-- 재접속 등에 의한 기주문 완료 건으로 접속시 -->
+		<p class="tx">{=__('주문 정보가 없습니다. 다시 확인 바랍니다.')}<br>{=__('지속적으로 문제가 발생될 경우 관리자에게 문의 하시기 바랍니다.')}</p>
+		<!--{ / }-->
+	</div>
+	<!--{ / }-->
+	<ul class="btn_pay_wrap">
+		<!--{ ? orderInfo.orderStatus == 'p' }-->
+		<li><a href="../mypage/order_list.php" class="order_my_btn">{=__('나의 주문 확인하기')}</a></li>
+		<!--{ / }-->
+		<li><a href="/" class="order_home_btn">{=__('홈으로 가기')}</a></li>
+	</ul>
+</div>
+{=fbOrderEndScript}
+{=naverCommonInflowScript}
+{ # footer }

@@ -32,8 +32,7 @@
             'setFixedSales' : '{=goodsView["fixedSales"]}',
             'setFixedOrderCnt' : '{=goodsView["fixedOrderCnt"]}'
         };
-        console.log('{goodsView.goodsCd}');
-        console.log({=goodsView['goodsNo']});
+       
         goodsViewController.init(parameters);
 
         <!--{ ? goodsView['qrCodeFl'] == 'y' && goodsView['qrStyle'] == 'btn' }-->
@@ -50,7 +49,7 @@
         $('.item_photo_info_sec .slider_goods_nav').slick({
             dots: false,
             centerMode: false,
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
             prevArrow: $('.item_photo_info_sec .slick_goods_prev'),
             nextArrow: $('.item_photo_info_sec .slick_goods_next')
@@ -63,8 +62,8 @@
             vertical: true,
             slidesToShow: 5,
             slidesToScroll: 1,
-            prevArrow: $('.item_photo_slide .slick_goods_prev'),
-            nextArrow: $('.item_photo_slide .slick_goods_next')
+            prevArrow: $('.zoom_layer .slick_goods_prev'),
+            nextArrow: $('.zoom_layer .slick_goods_next')
         });
 
         $('button.goods_cnt').on('click', function(e) {
@@ -658,7 +657,7 @@
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            $('#displayTimeSaleTime').text(hours + " : " + minutes + " : " + seconds);
+            $('#displayTimeSaleTime').text(hours + ":" + minutes + ":" + seconds);
 
             $("#displayTimeSale").show();
 
@@ -721,7 +720,7 @@
                 {=gd_global_currency_symbol()}<strong class="option_price_display_<%=displayOptionkey%>"><%=optionPrice%></strong>{=gd_global_currency_string()}
             </td>
             <td>
-                <button class="delete_goods" data-key="option_display_item_<%=displayOptionkey%>"><img src="../img/icon/shop_cart/ico_cart_del.png" alt="{=__('삭제')}"/></button>
+                <button type="button" class="delete_goods" data-key="option_display_item_<%=displayOptionkey%>"><img src="../img/icon/shop_cart/ico_cart_del.png" alt="{=__('삭제')}"/></button>
             </td>
         </tr>
     </tbody>
@@ -753,7 +752,7 @@
             {=gd_global_currency_symbol()}<strong class="add_goods_price_display_<%=displayOptionkey%>_<%=displayAddGoodsKey%>"></strong>{=gd_global_currency_string()}
         </td>
         <td>
-            <button class="delete_add_goods" data-key="<%=displayOptionkey%>-<%=displayAddGoodsKey%>"><img src="../img/icon/shop_cart/ico_cart_del.png" alt="{=__('삭제')}"/></button>
+            <button type="button" class="delete_add_goods" data-key="<%=displayOptionkey%>-<%=displayAddGoodsKey%>"><img src="../img/icon/shop_cart/ico_cart_del.png" alt="{=__('삭제')}"/></button>
         </td>
     </tr>
 </script>
@@ -800,6 +799,32 @@
                     <button type="button" class="slick_goods_next"><img src="../img/icon/shop_cart/btn_slide_next.png" alt="{=__('다음 상품 이미지')}"/></button>
                 </div>
                 <!-- //item_photo_slide -->
+                <!--{ ? plusReviewConfig.isShowGoodsPage == 'y' }-->    
+                 <div class="plus_review_brief_wrapper mt-2">
+                    <div class="plus_review_brief text-center">
+                        <ul>
+                            <!--{  ? plusReview.info.goodsPt.avg > 0}-->
+                            <em class="reviewed">
+                            <!--{ @ range(1,plusReview.info.goodsPt.avg)}-->★<!--{/}-->
+                            <span class="text-info h6">{=plusReview.info.goodsPt.avg}</span>
+                            </em>
+                            <!--{ : }-->
+                            <em class="no_review">
+                            <!--{ @ range(1,5)}-->★<!--{/}-->    
+                            <!--{ / }-->
+                            </em>
+
+                            <i class="mline"></i>
+                            <span class="p-2"><a href="#reviews">{=__('리뷰')}({=__('%s',plusReview.info.reviewCount)})</a></span>
+                            <i class="mline"></i>
+                            <span class="p-2"><a href="#reviews">{=__('포토')}({=__('%s',plusReview.info.photoCount)})</a></span>
+                            <i class="mline"></i>
+                            <span class="p-2"><a href="#qna">{=__('질문하기')}</a></span>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!--{ / }-->    
             </div>
             <!-- //item_photo_view -->
         </div>
@@ -848,9 +873,10 @@
             <div class="item_info_box">
                 <!--{ ? goodsView['timeSaleFl'] }-->
                 <div id="displayTimeSale" class="time_sale" style="display:none">
-                    <strong class="time_sale_num">{=goodsView['timeSaleInfo']['benefit']}<span>%</span> <span class="skip">{=__('타임세일')}</span></strong>
+                    <strong class="time_sale_num">{=goodsView['timeSaleInfo']['benefit']}<span>%</span></strong>
                     <strong class="time_day">
-                        <span id="displayTimeSaleDay" class="time_day_view"></span><b>{=__('일')}</b>
+                        <span>{=__('타임세일 남은시간')}</span>
+                        <span id="displayTimeSaleDay" class="time_day_view"></span><b class="time_day_view">{=__('일')}</b>
                         <span id="displayTimeSaleTime"></span>
                     </strong>
                     <!--{ ? goodsView['timeSaleInfo']['orderCntDisplayFl'] == 'y' }-->
@@ -936,6 +962,7 @@
                         </div>
                         <!-- //btn_qa_share_box -->
                     </div>
+                    
                     <div class="item_detail_list">
                         <dl>
                             <dt>{=__('상품코드')}</dt>
@@ -1285,7 +1312,7 @@
                         <dl>
                             <dt>{=__('브랜드')}</dt>
                             <dd>{=goodsView['brandNm']}
-                                <span class="btn_gray_list"><a href="../goods/goods_list.php?brandCd={=goodsView['brandCd']}" class="btn_gray_small"><span>{=__('브랜드샵')}</span></span>
+                                <span class="btn_gray_list mx-2"><a href="../goods/goods_list.php?brandCd={=goodsView['brandCd']}" class="btn_gray_small"><span>{=__('브랜드샵')}</span></a></span>
                             </dd>
                         </dl>
                         <!--{ : 'goodsWeight' }-->
@@ -1510,9 +1537,9 @@
                     <div class="order_goods"></div>
                     <div class="btn_choice_box btn_restock_box">
                         <!--{ ?goodsView['restockUsableFl'] === 'y' && !gGlobal.isFront }-->
-						<button class="btn_restock_notice_v2 restockSelector">{=__('재입고알림')}</button>
+						<button type="button" class="btn_restock_notice_v2 restockSelector">{=__('재입고알림')}</button>
                         <!--{ / }-->
-                        <button class="btn_add_soldout" disabled="disabled">{=__('구매 불가')}</button>
+                        <button type="button" class="btn_add_soldout" disabled="disabled">{=__('구매 불가')}</button>
                     </div>
                     <!--{ : }-->
                     <!--{ ? goodsView['optionFl'] == 'y' }-->
@@ -1630,12 +1657,12 @@
                     <!--{ / }-->
                     <div class="btn_choice_box">
                         <!--{ ?goodsView['restockUsableFl'] === 'y' && !gGlobal.isFront }-->
-						<button class="btn_restock_notice_v1 restockSelector">{=__('재입고알림')}</button>
-                        <!--{ / }-->
+                        <button type="button" class="btn_restock_notice_v1 restockSelector">{=__('재입고알림')}</button>
+						<!--{ / }-->
 						<div <!--{ ?goodsView['restockUsableFl'] === 'y' && !gGlobal.isFront }-->class="restock"<!--{ / }-->><!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-							<button class="btn_add_cart">{=__('장바구니')}</button>
-							<button class="btn_add_wish">{=__('찜하기')}</button>
-							<button class="btn_add_order">{=__('바로 구매')}</button>
+							<button type="button" class="btn_add_cart">{=__('장바구니')}</button>
+							<button type="button" class="btn_add_wish">{=__('찜하기')}</button>
+							<button type="button" class="btn_add_order">{=__('바로 구매')}</button>
 						</div>
                     </div>
                     <!-- //btn_choice_box -->
@@ -1671,24 +1698,12 @@
             </div>
             <!-- //item_goods_tab -->
             <div class="detail_cont">
-                <h3>{=__('상품상세정보')}</h3>
-                <div class="detail_explain_box">
-                    <div class="image-manual"><!-- 이미지 --></div>
-                    <div class="txt-manual">
-                        <!-- 상품상세 공통정보 관리를 상세정보 상단에 노출-->
-                        {=gd_isset(goodsView['commonContent'])}
-                        {=gd_isset(goodsView['goodsDescription'])}
-                    </div>
-                    <!--{ ? goodsView['externalVideoFl'] =='y'  && goodsView['externalVideoUrl'] }-->
-                    <div style="padding:10px 0;text-align:center" id="external-video">
-                        {=gd_youtube_player(goodsView['externalVideoUrl'], goodsView['externalVideoWidth'], goodsView['externalVideoHeight'])}
-                    </div>
-                    <!--{ / }-->
-                </div>
-                <!-- //detail_explain_box -->
+                <!-- <h3>{=__('상품상세정보')}</h3> -->
+                
+                
                 <!--{ ? goodsView['goodsMustInfo'] }-->
-                <h3>{=__('상품필수 정보')}</h3>
-                <div class="detail_info_box">
+                <!-- <h3>{=__('상품필수 정보')}</h3> -->
+                <div class="detail_info_box mt-2 mb-2">
                     <div class="datail_table">
                         <table class="left_table_type">
                             <colgroup>
@@ -1710,6 +1725,24 @@
                 </div>
                 <!-- //detail_info_box -->
                 <!--{ / }-->
+
+
+
+                <div class="detail_explain_box">
+                    <div class="image-manual"><!-- 이미지 --></div>
+                    <div class="txt-manual">
+                        <!-- 상품상세 공통정보 관리를 상세정보 상단에 노출-->
+                        {=gd_isset(goodsView['commonContent'])}
+                        {=gd_isset(goodsView['goodsDescription'])}
+                    </div>
+                    <!--{ ? goodsView['externalVideoFl'] =='y'  && goodsView['externalVideoUrl'] }-->
+                    <div style="padding:10px 0;text-align:center" id="external-video">
+                        {=gd_youtube_player(goodsView['externalVideoUrl'], goodsView['externalVideoWidth'], goodsView['externalVideoHeight'])}
+                    </div>
+                    <!--{ / }-->
+                </div>
+                <!-- //detail_explain_box -->
+                
                 <!--{ ? relation.relationFl != 'n' }-->
                 <div class="detail_explain_box">
                     <h3>{=__('관련 상품')}</h3>
@@ -1732,8 +1765,8 @@
             <div class="item_goods_tab">
                 <ul>
                     <li><a href="#detail">{=__('상품상세정보')}</a></li>
-                    <li class="on"><a href="#delivery">{=__('배송안내')}</a></li>
-                    <li><a href="#exchange">{=__('교환 및 반품안내')}</a></li>
+                    <li class="on"><a href="#delivery">{=__('배송/교환/환불')}</a></li>
+                    <li><a href="#exchange">{=__('회원혜택안내')}</a></li>
                     <li><a href="#reviews">{=__('상품후기')} <strong>({goodsReviewCount+plusReview.info.reviewCount})</strong></a></li>
                     <li><a href="#qna">{=__('상품문의')} <strong>({goodsQaCount})</strong></a></li>
                 </ul>
@@ -1741,7 +1774,7 @@
             <!-- //item_goods_tab -->
             <!--{ ? infoDelivery }-->
             <div class="delivery_cont">
-                <h3>{=__('배송안내')}</h3>
+                <!-- <h3>{=__('배송안내')}</h3> -->
                 <div class="admin_msg">{infoDelivery}</div>
             </div>
             <!-- //delivery_cont -->
@@ -1752,8 +1785,8 @@
             <div class="item_goods_tab">
                 <ul>
                     <li><a href="#detail">{=__('상품상세정보')}</a></li>
-                    <li><a href="#delivery">{=__('배송안내')}</a></li>
-                    <li class="on"><a href="#exchange">{=__('교환 및 반품안내')}</a></li>
+                    <li><a href="#delivery">{=__('배송/교환/환불')}</a></li>
+                    <li class="on"><a href="#exchange">{=__('회원혜택안내')}</a></li>
                     <li><a href="#reviews">{=__('상품후기')} <strong>({goodsReviewCount+plusReview.info.reviewCount})</strong></a></li>
                     <li><a href="#qna">{=__('상품문의')} <strong>({goodsQaCount})</strong></a></li>
                 </ul>
@@ -1761,23 +1794,11 @@
             <!-- //item_goods_tab -->
             <div class="exchange_cont">
                 <!--{ ? infoExchange }-->
-                <h3>{=__('교환 및 반품안내')}</h3>
                 <div class="admin_msg">
                     {infoExchange}
                 </div>
                 <!--{ / }-->
-                <!--{ ? infoRefund }-->
-                <h3>{=__('환불안내')}</h3>
-                <div class="admin_msg">
-                    {infoRefund}
-                </div>
-                <!--{ / }-->
-                <!--{ ? infoAS }-->
-                <h3>{=__('AS안내')}</h3>
-                <div class="admin_msg">
-                    {infoAS}
-                </div>
-                <!--{ / }-->
+                
             </div>
             <!-- //exchange_cont -->
         </div>
@@ -1786,8 +1807,8 @@
             <div class="item_goods_tab">
                 <ul>
                     <li><a href="#detail">{=__('상품상세정보')}</a></li>
-                    <li><a href="#delivery">{=__('배송안내')}</a></li>
-                    <li><a href="#exchange">{=__('교환 및 반품안내')}</a></li>
+                    <li><a href="#delivery">{=__('배송/교환/환불')}</a></li>
+                    <li><a href="#exchange">{=__('회원혜택안내')}</a></li>
                     <li class="on"><a href="#reviews">{=__('상품후기')} <strong>({goodsReviewCount+plusReview.info.reviewCount})</strong></a></li>
                     <li><a href="#qna">{=__('상품문의')} <strong>({goodsQaCount})</strong></a></li>
                 </ul>
@@ -1818,8 +1839,8 @@
             <div class="item_goods_tab">
                 <ul>
                     <li><a href="#detail">{=__('상품상세정보')}</a></li>
-                    <li><a href="#delivery">{=__('배송안내')}</a></li>
-                    <li><a href="#exchange">{=__('교환 및 반품안내')}</a></li>
+                    <li><a href="#delivery">{=__('배송/교환/환불')}</a></li>
+                    <li><a href="#exchange">{=__('회원혜택안내')}</a></li>
                     <li><a href="#reviews">{=__('상품후기')} <strong>({goodsReviewCount+plusReview.info.reviewCount})</strong></a></li>
                     <li class="on"><a href="#qna">{=__('상품문의')} <strong>({goodsQaCount})</strong></a></li>
                 </ul>
@@ -1903,8 +1924,8 @@
                 <p class="success"><strong>{=__('상품이 장바구니에 담겼습니다.')}</strong><br>{=__('바로 확인하시겠습니까?')}</p>
             </div>
             <div class="btn_box">
-                <button class="btn_cancel"><span>{=__('취소')}</span></button>
-                <button class="btn_confirm btn_move_cart"><span>{=__('확인')}</span></button>
+                <button type="button" class="btn_cancel"><span>{=__('취소')}</span></button>
+                <button type="button" class="btn_confirm btn_move_cart"><span>{=__('확인')}</span></button>
             </div>
             <!-- //btn_box -->
             <button title="{=__('닫기')}" class="close layer_close" type="button">{=__('닫기')}</button>
@@ -1920,8 +1941,8 @@
                 <p class="success"><strong>{=__('상품이 찜 리스트에 담겼습니다.')}</strong><br>{=__('바로 확인하시겠습니까?')}</p>
             </div>
             <div class="btn_box">
-                <button class="btn_cancel"><span>{=__('취소')}</span></button>
-                <button class="btn_confirm btn_move_wish"><span>{=__('확인')}</span></button>
+                <button type="button" class="btn_cancel"><span>{=__('취소')}</span></button>
+                <button type="button" class="btn_confirm btn_move_wish"><span>{=__('확인')}</span></button>
             </div>
             <!-- //btn_box -->
             <button title="{=__('닫기')}" class="close layer_close" type="button">{=__('닫기')}</button>
@@ -1941,6 +1962,22 @@
 <!--//플러스리뷰 레이어 --><div id="writePop" class="layer_wrap plus_review_edit_layer dn"></div>
 
 <script type="text/javascript" src="\{=c.PATH_SKIN}js/gd_board_goods.js" charset="utf-8"></script>
+<script stype="text/javascript">
+    $("img.gd_image_lazy").attr("width", 166);
 
+    $(function() {
+        if ($('#view-more-from-title')) {
+            var fxNavCateNames = [];
+
+            <!--{ @ goodsCategoryList }-->
+            fxNavCateNames.push('<a href="/goods/goods_list.php?cateCd={=.key_}">{=.cateNm}</a>');
+            <!--{ / }-->
+
+            $('#view-more-from-title').html('View More From');
+            $('.view-more-from ul li').html(fxNavCateNames.join(' > '));
+        }
+    });
+
+</script>
 {=fbGoodsViewScript}
 { # footer }

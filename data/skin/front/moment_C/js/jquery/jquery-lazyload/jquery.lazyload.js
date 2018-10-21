@@ -71,6 +71,8 @@
             $.extend(settings, options);
         }
 
+        lazyloadImageDefault = settings.placeholder;
+
         /* Cache container as jQuery as object. */
         $container = (settings.container === undefined ||
                       settings.container === window) ? $window : $(settings.container);
@@ -242,16 +244,9 @@
 })(jQuery, window, document);
 
 $(function() {
-    setTimeout(function() {
-        $("img.gd_image_lazy").lazyload();
-    }, 1);
+     var lazyloadImageDefault;
 
-    // Ajax 에러 및 처리 기본값 설정
-    $.ajaxSetup({
-        complete: function () {
-            setTimeout(function() {
-                $("img.gd_image_lazy").lazyload();
-            }, 1);
-        }
-    });
+    setTimeout(function() {
+        $("img.gd_image_lazy").lazyload({threshold:200});
+    }, 1);
 });

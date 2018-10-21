@@ -296,9 +296,9 @@
 .layer_wrap .item_photo_slide .ly_slider_goods_nav li img{width:80px; height:80px; margin:2px 2px 2px 2px;}
 .layer_wrap .item_photo_slide .ly_slider_goods_nav li a{display:block; width:80px;}
 /* 작은 슬라이드 이미지 오버시, 선택시 */
-.layer_wrap .item_photo_slide .ly_slider_goods_nav li a:hover{width:80px; height:80px; border:2px solid #333;}
+.layer_wrap .item_photo_slide .ly_slider_goods_nav li a:hover{width:80px; height:80px;}
 .layer_wrap .item_photo_slide .ly_slider_goods_nav li a:hover img{margin:0;}
-.layer_wrap .item_photo_slide .ly_slider_goods_nav li a.on{width:80px; height:80px; border:2px solid #333;}
+.layer_wrap .item_photo_slide .ly_slider_goods_nav li a.on{width:80px; height:80px;}
 .layer_wrap .item_photo_slide .ly_slider_goods_nav li a.on img{margin:0;}
 /* 작은 슬라이드 버튼 */
 .layer_wrap .item_photo_slide .slick_goods_prev,

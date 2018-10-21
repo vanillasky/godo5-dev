@@ -97,7 +97,7 @@ th > .important{margin: 0 0 0 -10px; padding:0 0 0 10px; background:url('../../i
 .order_table_type .pick_add_cont .pick_option_box .btn_gray_list{margin:5px 0 0 0;}
 /* 체크박스 */
 .order_table_type thead .form_element, .order_table_type .td_chk .form_element{height:18px; }
-.order_table_type .form_element label.check_s{padding: 0 0 0 5px;}
+/*.order_table_type .form_element label.check_s{padding: 0 0 0 5px;}*/
 .order_table_type .td_chk{vertical-align:middle;}
 /* 수량 */
 .order_table_type .td_order_amount{border-left:1px solid #eee; border-right:1px solid #eee;}

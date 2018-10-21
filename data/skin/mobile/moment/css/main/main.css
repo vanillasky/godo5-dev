@@ -1,0 +1,59 @@
+@charset "utf-8";
+/*───────────────────────────────────────────────────────────
+
+	 리스트 타입 및 옵션
+
+───────────────────────────────────────────────────────────*/
+@import url("../goods/goods.css");
+
+
+/*** 쇼핑몰 메인본문 | main/index.php ***/
+
+.main {}
+.main .main_top_menu {display:table; width:100%;}
+.main .main_top_menu li {display:table-cell; width:25%; text-align:center;}
+.main .main_top_menu li a {display:block; padding:13px 0 13px 0;font-size:14px; color:#333333;}
+.main .main_notice {display:table; width:100%; margin:0 auto; padding:22px 0 22px 0;}
+.main .main_notice .tit {display:table-cell; width:84px; font-size:13px; font-weight:bold; color:#282828; text-align:center;}
+.main .main_notice ul {display:table-cell;}
+.main .main_notice ul li {overflow:hidden; width:80%; display:-webkit-box; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient:vertical; letter-spacing:-1px;}
+.main .main_notice ul li a {display:block; width:100%;}
+/* 메인배너 */
+.main .main_banner_box {font-size:0;}
+.main .main_banner_box img {width:100%; font-size:0;}
+.main .main_banner_box1 {display:table; width:100%;}
+.main .main_banner_box1 li {display:table-cell; width:50%; font-size:0; text-align:center; vertical-align:top;}
+.main .main_banner_box1 li a {}
+.main .main_banner_box1 li a img {width:100%; font-size:0;}
+.main .main_banner_box2 {padding:10px 0; font-size:0;}
+.main .main_banner_box2 img {width:100%; font-size:0;}
+
+/* 이벤트 최근게시물 */
+.main .main_event {}
+.main .main_event ul {}
+.main .main_event ul li {position:relative; padding:7px 0;}
+.main .main_event ul li .img_box {font-size:0;}
+.main .main_event ul li .img_box img {width:100%;}
+.main .main_event ul li .event_info_box {/*position:absolute; bottom:7px; left:0;*/ width:100%; }
+.main .main_event ul li .event_info_box dl {padding:20px; background:rgba(255,255,255,0.8); box-sizing:border-box;}
+.main .main_event ul li .event_info_box dl dt {}
+.main .main_event ul li .event_info_box dl dt a {display:block; font-size:17px; color:#222222; font-weight:bold;}
+.main .main_event ul li .event_info_box dl dd {font-size:15px; color:#ab295d; font-weight:bold;}
+
+/* 하단 정보 BOX */
+.main .main_info_box {padding:0 10px}
+.main .main_info_box .main_info {display:table; width:100%; margin:0 auto; padding:12px 0 12px 0; text-align:center;}
+.main .main_info_box .main_info dl {display:table-cell; width:50%; text-align:left; vertical-align:top;}
+.main .main_info_box .main_info dl dt {font-size:13px; margin:0 5px; font-weight:bold; border-bottom:1px solid #999;}
+.main .main_info_box .main_info dl dd {font-size:11px; padding-left:5px;}
+
+/* CS CENTER */
+.main .main_info dl dd p.phone {padding:5px 0;}
+.main .main_info dl dd p.phone a {font-size:22px; color:#ab3e55;}
+.main .main_info dl dd p.business_hours {font-size:11px; color:#666;}
+
+/* BANK INFO */
+.main .main_info dl dd .account_holder {padding:11px 0; font-size:14px;}
+.main .main_info dl dd ul.main_bank {display:table-cell;}
+.main .main_info dl dd ul.main_bank li { vertical-align:middle;}
+.main .main_info dl dd ul.main_bank li span {font-weight:bold;}

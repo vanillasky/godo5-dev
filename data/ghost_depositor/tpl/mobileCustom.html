@@ -1,0 +1,131 @@
+{*** 미확인 입금자 리스트 | service/ghost_depositor.php ***}
+<div class="m_ghost_depositor mobile">
+    <div class="ly_head">
+        <h1 class="h_tit">{=__('미확인 입금 고객')}</h1>
+    </div>
+    <div id="ghost_depositor_cont" class="ly_ct">
+        <div class="datepicker_area">
+            <div>
+                <div>
+                    <input type="date" id="depositDate" name="depositDate" class="" placeholder="{=__('입금일자를 선택해 주세요.')}" value="{searchDate}" onchange="this.className=(this.value!=''?'has-value':'')">
+                </div>
+                <div>
+                    <input type="text" id="ghostDepositor" name="ghostDepositor" value="{searchName}" placeholder="{=__('입금자명을 입력해 주세요.')}">
+                </div>
+            </div>
+            <div class="piker_search_btn">
+                <button type="button" class="h_search_btn">{=__('조회하기')}</button>
+            </div>
+            <p class="txt_infor">{=__('해당 고객님께서는 고객센터 또는 게시판으로 문의 바랍니다.')}</p>
+        </div>
+        <!-- // datepicker_area -->
+        <div class="ghost_depositor_li">
+            <ul class="js_gd_list">
+                <!--{ ? loop }-->
+                <!--{ @ loop }-->
+                <li>
+                    <div class="ghost_depositor_li_top">
+                        <p>{.ghostDepositor}</p>
+                        <p>{.depositPrice}{=__('원')}</p>
+                    </div>
+                    <div class="ghost_depositor_li_bot">
+                        <p>{.depositDate}</p>
+                        <p>{.bankName}</p>
+                    </div>
+                </li>
+                <!--{ / }-->
+                <!--{ / }-->
+            </ul>
+        </div>
+        <!-- // ghost_depositor_li -->
+        <div class="ghost_depositor_more_btn">
+            <button type="button" class="more_btn">{=__('더보기')}</button>
+        </div>
+        <!-- // ghost_depositor_more_btn -->
+        <!-- 리스트 내용이 없을 경우 -->
+        <div class="ghost_depositor_no_list">
+            <p>{=__('등록된 미확인 입금 고객이 없습니다.')}</p>
+        </div>
+        <!-- // ghost_depositor_no_list -->
+    </div>
+    <!-- // ghost_depositor_cont -->
+    <div class="close_btn">
+        <button type="button" class="lys_close_btn ly_btn_close">{=__('닫기')}</button>
+    </div>
+</div>
+
+<script>
+    var page = 1;
+    var totalPage = {=total};
+
+    $(document).ready(function () {
+        $(".ghost_depositor_no_list").hide();
+        $('.more_btn').hide();
+
+        if(totalPage == 0) {
+            $(".ghost_depositor_no_list").show();
+        } else if(page < totalPage) {
+            $('.more_btn').show();
+        }
+
+        $('.more_btn').bind('click',function () {
+            page=Number(page)+1;
+            gd_load_ghost_depositor_list(page);
+        });
+
+        $('.h_search_btn').bind('click',function () {
+            page = 1;
+            gd_load_ghost_depositor_list(page);
+            $('.js_gd_list').empty();
+        });
+
+        function gd_load_ghost_depositor_list (page) {
+
+            $(".ghost_depositor_no_list").hide();
+            $('.more_btn').hide();
+
+            var depositDate = $("#depositDate").val();
+            var ghostDepositor = $("#ghostDepositor").val();
+            var html = '';
+
+            $.ajax({
+                url: '../service/ghost_depositor_ps.php',
+                data: {page: page, depositDate: depositDate, ghostDepositor: ghostDepositor},
+                method: 'get',
+                type: 'text',
+                cache: false,
+            }).success(function (result) {
+                result = JSON.parse(result);
+                for(var i in result.data) {
+                    var d = result.data[i];
+                    html += '<li>';
+                    html += '<div class="ghost_depositor_li_top">';
+                    html += '<p>'+d.ghostDepositor+'</p>';
+                    html += '<p>'+d.depositPrice+'원</p>';
+                    html += '</div>';
+                    html += '<div class="ghost_depositor_li_bot">';
+                    html += '<p>'+d.depositDate+'</p>';
+                    html += '<p>'+d.bankName+'</p>';
+                    html += '</div>';
+                    html += "</li>";
+                }
+
+                $('.js_gd_list').append(html);
+
+                totalPage = result.total;
+                totalPage = Number(totalPage);
+
+                if(page < totalPage) {
+                    $('.more_btn').show();
+                }
+
+                if(totalPage == 0) {
+                    $(".ghost_depositor_no_list").show();
+                    $('.more_btn').hide();
+                }
+            }).error(function (e){
+                console.log(e);
+            });
+        }
+    });
+</script>

@@ -90,6 +90,7 @@ String.prototype.format = function () {
  * DOM 로드
  */
 $(document).ready(function () {
+
     // IE 9 이하 placeholder 처리
     if (gd_is_ie() < 10) {
         $("input, textarea").placeholder();
@@ -226,6 +227,12 @@ $(document).ready(function () {
             gd_select_remodeling();
             gd_checkbox_all();
 
+            //이미지 로딩 향상 사용 시 호출.
+            if ($.isFunction($.fn.lazyload) === true) {
+                setTimeout(function() {
+                    $("img.gd_image_lazy").lazyload({threshold:200});
+                }, 1);
+            }
         },
         error: function (xhr, textStatus, error) {
             if (xhr.status == '404' && error == 'Not Found') {

@@ -1,0 +1,65 @@
+{*** 플러스리뷰 상품기준 리뷰 게시판 | board/plus_review_goods.php ***}
+{ # header }
+<link type="text/css" rel="stylesheet" href="\{=c.PATH_MOBILE_SKIN}css/gd_plus_review.css">
+<div class="plus_review_goods">
+    <!--{ ? data.list }-->
+    <ul class="plus_review_goods_list">
+        <!--{@data.list}-->
+        <li class="row">
+            <img src="{=.goodsImageSrc}" data-goodsno="{.goodsNo}">
+            <div class="name">{=.goodsNm}</div>
+            <div class="review_info">{=__('평가')}<span class="red_bold">{.avgGoodsPt}</span> {=__('리뷰')}<span class="red_bold">{.countArticle}</span></div>
+            <ul class="article_area">
+                <!--{ @ .article}-->
+                <li>
+                    <div class="icon_review"></div>
+                    <div class="article">{..contents}</div>
+                </li>
+                <!--{/}-->
+            </ul>
+        </li>
+        <!--{/}-->
+    </ul>
+    <div class="page_btn_box">
+        <button type="button" class="prev_btn" data-page="{req.page - 1}">{=__('이전')}</button>
+        <span class="page_number"><strong>{req.page}</strong> / {=data.cnt.totalPage}</span>
+        <button type="button" class="next_btn" data-page="{req.page + 1}">{=__('이후')}</button>
+    </div>
+    <!--{:}-->
+    <div class="no_list">
+        {=__('게시글이 존재하지 않습니다.')}
+    </div>
+    <!--{/}-->
+</div>
+
+{ # footer }
+<script type="text/javascript">
+    $(document).ready(new function() {
+        var totalPage = {=data.cnt.totalPage};
+        $('.plus_review_goods_list').pinterest_grid({
+            no_columns: 2,
+            padding_x: 10,
+            padding_y: 20,
+            margin_bottom: $('.plus_review_goods_list .row').length * 9,
+            single_column_breakpoint: 0
+        });
+
+        $('.plus_review_goods_list .row img').bind('click',function () {
+            location.href='../goods/goods_view.php?goodsNo='+$(this).data('goodsno');
+        })
+
+        $('.prev_btn').on('click', function() {
+            if ($(this).data('page') > 0) {
+                url = gd_replace_url_param(location.href, 'page', $('.prev_btn').data('page'));
+                location.href = url;
+            }
+        });
+
+        $('.next_btn').on('click', function() {
+            if ($(this).data('page') <= totalPage) {
+                url = gd_replace_url_param(location.href, 'page', $('.next_btn').data('page'));
+                location.href = url;
+            }
+        });
+    });
+</script>

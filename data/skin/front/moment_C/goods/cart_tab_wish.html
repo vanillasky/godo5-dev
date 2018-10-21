@@ -320,6 +320,11 @@
 
     });
 
+    function parseInt2(value) {
+        return isNaN(parseInt(value, 10)) ? 0 : parseInt(value, 10);
+    }
+
+
     function gd_wish_total() {
         var totalDeliveryCharge = 0;
         var goodsPrice = 0;
@@ -339,11 +344,11 @@
                 goodsDcPrice = $(this).data('goodsdc');
                 memberDcPrice = $(this).data('memberdc');
                 couponGoodsDcPrice = $(this).data('coupondc');
-                totalGoodsDcPrice = totalGoodsDcPrice + parseInt(goodsDcPrice);
-                totalSumMemberDcPrice = totalSumMemberDcPrice + parseInt(memberDcPrice);
-                totalCouponGoodsDcPirce = totalCouponGoodsDcPirce + parseInt(couponGoodsDcPrice);
-                totalGoodsPrice = totalGoodsPrice + parseInt(goodsPrice) + parseInt(memberDcPrice) + parseInt(goodsDcPrice) + parseInt(couponGoodsDcPrice);
-                totalGoodsMileage = totalGoodsMileage + parseInt(goodsMileage);
+                totalGoodsDcPrice = totalGoodsDcPrice + parseInt2(goodsDcPrice);
+                totalSumMemberDcPrice = totalSumMemberDcPrice + parseInt2(memberDcPrice);
+                totalCouponGoodsDcPirce = totalCouponGoodsDcPirce + parseInt2(couponGoodsDcPrice);
+                totalGoodsPrice = totalGoodsPrice + parseInt2(goodsPrice) + parseInt2(memberDcPrice) + parseInt2(goodsDcPrice) + parseInt2(couponGoodsDcPrice);
+                totalGoodsMileage = totalGoodsMileage + parseInt2(goodsMileage);
 
             }
         });

@@ -121,7 +121,7 @@
 /* 진행 중인 주문 */
 .mypage_order_info_cont{margin:0 0 30px 0; padding:35px 0 35px 0; font-size:0; border:1px solid #e3e3e3; border-top:1px solid #999999; text-align:center;}
 .mypage_order_info_cont ol{display:inline-block; width:80%; font-size:0; border-right:1px solid #e3e3e3; vertical-align:middle;}
-.mypage_order_info_cont ol li{display:inline-block; width:10%; min-width:66px; padding:0 10px 0 30px; font-size:13px; background:url('../../img/mypage/mypgae_ing_next_bg.png') no-repeat left 50px; text-align:center;}
+.mypage_order_info_cont ol li{display:inline-block; width:14%; min-width:66px; font-size:12px; background:url('../../img/mypage/mypgae_ing_next_bg.png') no-repeat left 50px; text-align:center;}
 .mypage_order_info_cont ol li:first-child{padding-left:10px; background:none 0;}
 .mypage_order_info_cont ol li b{display:block; padding:0 0 15px 0;}
 .mypage_order_info_cont ol li strong{display:inline-block; width:52px; height:52px; padding:10px 0 0 0; color:#ffffff; font-size:18px; background:url('../../img/mypage/mypgae_ing_list_bg.png') no-repeat 0 0; text-align:center;vertical-align:middle;}

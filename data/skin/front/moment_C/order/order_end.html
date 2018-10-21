@@ -180,7 +180,7 @@
                                                     {=__('남기실 말씀')} : {=gd_isset(multiOrderInfo.orderMemo[.index_])}
                                                     <!--{ : }-->
                                                     [{=gd_isset(multiOrderInfo.receiverZonecode[.index_])}] {=gd_isset(multiOrderInfo.receiverAddress[.index_])} {=gd_isset(multiOrderInfo.receiverAddressSub[.index_])}<br />
-                                                    {=gd_isset(multiOrderInfo.receiverPhone[.index_])}  /  {=gd_isset(multiOrderInfo.receiverCellPhone[.index_])}<!--{ ? orderInfo.receiverUseSafeNumberFl == 'w' || orderInfo.receiverUseSafeNumberFl == 'y' }-->&nbsp;({=__('안심번호 사용')})<!--{ / }--><br />
+                                                    {=gd_isset(multiOrderInfo.receiverPhone[.index_])}  /  {=gd_isset(multiOrderInfo.receiverCellPhone[.index_])}<!--{ ? multiOrderInfo.receiverUseSafeNumberFl[.index_] == 'w' || multiOrderInfo.receiverUseSafeNumberFl[.index_] == 'y' }-->&nbsp;({=__('안심번호 사용')})<!--{ / }--><br />
                                                     {=__('남기실 말씀')} : {=gd_isset(multiOrderInfo.orderMemo[.index_])}
                                                     <!--{ / }-->
                                                 </p>

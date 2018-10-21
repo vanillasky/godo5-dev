@@ -1,0 +1,101 @@
+{*** 회원가입(정보입력) | member/join.php ***}
+{ # header }
+<div class="join" id="memberjoin">
+	<form id="formJoin" name="formJoin" method="post" action="../member/member_ps.php">
+		<input type="hidden" name="rncheck" value="{data.rncheck}"/>
+		<input type="hidden" name="dupeinfo" value="{data.dupeinfo}"/>
+		<input type="hidden" name="pakey" value="{data.pakey}"/>
+		<input type="hidden" name="adultFl" value="{data.adultFl}">
+		<input type="hidden" name="foreigner" value="{data.foreigner}"/>
+		<input type="hidden" name="mode" value="join"/>
+		<div class="join_step">
+			<ul>
+				<li>{=__('약관동의')}</li>
+				<li class="on">{=__('계정생성')}</li>
+				<li>{=__('가입완료')}</li>
+			</ul>
+		</div>
+		<div class="join_content_box">
+			<div class="join_content" >
+				<!-- 회원가입/정보 기본정보 -->{=includeWidget('member/_join_view.html')}<!-- 회원가입/정보 기본정보 -->
+				<!-- 회원가입/정보 사업자정보 -->{=includeWidget('member/_join_view_business.html')}<!-- 회원가입/정보 사업자정보 -->
+				<!-- 회원가입/정보 부가정보 -->{=includeWidget('member/_join_view_other.html')}<!-- 회원가입/정보 부가정보 -->
+			</div>
+			<div class="join_btn_box">
+				<button class="join_ok_btn" type="button" id="btnConfirm" value="{=__('확인')}">{=__('확인')}</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+    var paycoProfile = {paycoProfile};
+    var naverProfile = {naverProfile};
+    var thirdPartyProfile = {thirdPartyProfile};
+    $(document).ready(function () {
+        var $formJoin = $('#formJoin');
+
+
+        $(':text:first', $formJoin).focus();
+
+        $('#btnCancel', $formJoin).click(function (e) {
+            top.location.href = '/';
+            e.preventDefault();
+        });
+
+        $('#btnPostcode').click(function (e) {
+            e.preventDefault();
+            $('#address-error, #addressSub-error').remove();
+            $(':text[name=address], :text[name=addressSub]').removeClass('error c_red');
+            gd_postcode_search('zonecode', 'address', 'zipcode');
+        });
+
+        $('#btnCompanyPostcode').click(function (e) {
+            e.preventDefault();
+            $('#comAddress-error, #comAddressSub-error').remove();
+            $(':text[name=comAddress], :text[name=comAddressSub]').removeClass('error c_red');
+            gd_postcode_search('comZonecode', 'comAddress', 'comZipcode');
+        });
+
+        <!--{?joinField.businessinfo.use == 'y'}-->
+        $(':radio[name="memberFl"]').change(function () {
+            var $businessinfo = $('.businessinfo');
+            if (this.value == 'business') {
+                $businessinfo.removeClass('dn');
+                $businessinfo.find('input, select').removeClass('ignore');
+            } else {
+                $businessinfo.addClass('dn');
+                $businessinfo.find('input, select').addClass('ignore');
+            }
+        });
+        $(':radio[name="memberFl"]:checked').trigger('change');
+        <!--{/}-->
+
+        <!--{? joinField.marriFl.use == 'y' && joinField.marriDate.use == 'y'}-->
+        $(':radio[name="marriFl"]').change(function () {
+            var $marridateinfo = $('.marridateinfo');
+            if (this.value == 'y') {
+                $marridateinfo.removeClass('dn');
+            } else {
+                $marridateinfo.addClass('dn');
+                $marridateinfo.find('input#marriDate').val('');
+            }
+        });
+        <!--{/}-->
+
+        gd_select_email_domain('email');
+
+        gd_member2.init($formJoin);
+
+        setTimeout(function(){
+            $('#memId').focusout()
+            $('#email').focusout();
+        },1);
+
+        $('#btnConfirm').click({form: $formJoin}, gd_member2.save);
+
+        $('#birthYears').initSelectDateFormat();
+        $('#marriYears').initSelectDateFormat();
+    });
+</script>
+{ # footer }

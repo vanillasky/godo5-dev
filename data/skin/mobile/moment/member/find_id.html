@@ -1,0 +1,80 @@
+{*** 아이디 찾기 | member/find_id.php ***}
+{ # header }
+<div class="find_id">
+	<p class="find_txt">
+		<strong>{=__('아이디를 분실하셨나요?')}</strong>
+		{=__('이름과 가입 시 이메일을 입력해주세요.')}
+	</p>
+	<form id="formLogin" name="login_form" action="" method="post">
+		<fieldset id="divFindId">
+			<legend>{=__('아이디 찾기')}</legend>
+			<dl>
+				<dt><label for="userName" class="blind">{=__('고객이름')}</label></dt>
+				<dd><input type="text" id="userName" name="userName" placeholder="{=__('고객이름')}" required="required"/></dd>
+			</dl>
+			<dl>
+				<dt><label for="userEmail" class="blind">{=__('가입 시 이메일')}</label></dt>
+				<dd><input type="text" id="userEmail" name="userEmail" placeholder="{=__('가입 시 이메일')}" required="required"/></dd>
+			</dl>
+			<p class="caution_msg1 hidden"></p>
+			<button type="submit" class="find_id_btn">{=__('아이디 찾기')}</button>
+		</fieldset>
+	</form>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(document).on('click', '.btn_login', function (e) {
+			document.location.href = "./login.php"
+		});
+		//$('.btn_find_password', '.btn_cell').click(function (e) {
+		//	goMenu('findPwd');
+		//	e.preventDefault();
+		//});
+		$('#formLogin').validate({
+			dialog: false,
+			rules: {
+				userName: {
+					required: true
+				},
+				userEmail: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				userName: {
+					required: "{=__('이름을 입력해주세요.')}"
+				},
+				userEmail: {
+					required: "{=__('이메일을 입력해주세요.')}",
+					email: "{=__('메일 형식이 틀렸습니다.')}"
+				}
+			}, submitHandler: function (form) {
+				var params = $(form).serializeArray();
+				params.push({name: "mode", value: "findId"});
+				$.post('../member/find_ps.php', params).done(function (data) {
+					//console.log(data);
+					if (data.result) {
+						var compiled = _.template($('#templateFindIdResult').html());
+						var templateData = {memberId: data.memberId, userName: $('#userName').val()};
+						$('#divFindId').html(compiled(templateData));
+					} else {
+						$(form).find('.caution_msg1').removeClass('hidden').text(data.message);
+					}
+				});
+			}, invalidHandler: function (form, validator) {
+				var errors = validator.numberOfInvalids();
+				if (errors) {
+					$(form.target).find('.caution_msg1').removeClass('hidden').text(validator.errorList[0].message);
+					validator.errorList[0].element.focus();
+				}
+			}
+		});
+	});
+</script>
+<script type="text/template" id="templateFindIdResult">
+	<p class="find_id_msg"><%=userName%> {=__('회원님의 아이디는 %s 입니다', '<br><span class="c-red">'+'<%=memberId%>'+ '</span>')}</p>
+	<button type="button" class="find_id_btn btn_login">{=__('로그인')}</button>
+</script>
+{ # footer }

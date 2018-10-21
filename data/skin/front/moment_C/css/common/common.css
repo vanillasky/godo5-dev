@@ -309,18 +309,19 @@ span.form_element{display:inline-block;}
 /* 페이징 공통 */
 .pagination{margin:20px 0 0 0;}
 .pagination ul{padding:20px 0 0; text-align:center;}
-.pagination li{display:inline-block; min-width:26px; border:1px solid #ffffff;}
+.pagination li{display:inline-block; min-width:26px;vertical-align:middle;}
 .pagination li a,
-.pagination li span{display:block; height:21px; padding:4px 5px 1px 5px; text-align:center;}
-.pagination li:hover{border:1px solid #dbdbdb; text-decoration:underline;}
-.pagination li.on:hover{border:1px solid #9b344a; text-decoration:none;}
-.pagination .on{color:#ab3e55; font-weight:bold; border:1px solid #ab3e55;}
-.pagination .btn_page{width:26px; border:1px solid #e0e0e0; background:#ffffff; text-indent:-9999px;}
+.pagination li span{display:block; padding:0 !important; height:30px; width:30px; color:#888; font-size: 11px; line-height:30px; vertical-align:middle;}
+.pagination li.on span{font-weight:bold; color:#fff; background:#7a7d81; border-radius: 20px;}
+.pagination .on{color:#333; font-weight:bold;}
+.pagination .btn_page{min-width:26px; border:1px solid #e0e0e0; background:#ffffff;}
+.pagination .btn_page a{min-width:30px;width:auto;}
 .pagination .btn_page a:hover{border:none 0;}
-.pagination .btn_page_first{margin:0 1px 0 1px; background: url("../../img/common/btn/btn_paging_first.png") no-repeat center center;}
-.pagination .btn_page_prev{margin:0 10px 0 1px; background: url("../../img/common/btn/btn_paging_prev.png") no-repeat center center;}
-.pagination .btn_page_next{margin:0 1px 0 10px; background: url("../../img/common/btn/btn_paging_next.png") no-repeat center center;}
-.pagination .btn_page_last{margin:0 1px 0 1px; background: url("../../img/common/btn/btn_paging_last.png") no-repeat center center;}
+.pagination .btn_page a img{display:none;}
+.pagination .btn_page_first{margin:0 1px 0 1px;background: url("../../img/common/btn/btn_paging_first.png") no-repeat 5px center; padding: 0 5px 0 15px!important;}
+.pagination .btn_page_prev{margin:0 10px 0 1px; background: url("../../img/common/btn/btn_paging_prev.png") no-repeat 5px center;padding: 0 5px 0 10px!important;}
+.pagination .btn_page_next{margin:0 1px 0 10px; background: url("../../img/common/btn/btn_paging_next.png") no-repeat 36px center;padding: 0 10px 0 5px!important;}
+.pagination .btn_page_last{margin:0 1px 0 1px; background: url("../../img/common/btn/btn_paging_last.png") no-repeat 36px center;padding: 0 15px 0 5px!important;}
 .goods_list + .pagination{padding:10px 0 0 0; border-top:1px solid #dbdbdb;}
 
 /*  추천순, 판매인기순, 낮은가격순, 높은가격순, 상품평순, 등록일순 */
